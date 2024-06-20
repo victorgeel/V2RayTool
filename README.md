@@ -5,6 +5,9 @@ get generate UUID and free V2Ray
 
 servers by using notebook.
 
+# Easy to use click colab logo
+[![link](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/victorgeel/facefusion-Bypass-NSFW/blob/master/FacefusionBypass.ipynb)
+
 
 # Installation
 + clone
