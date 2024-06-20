@@ -20,7 +20,7 @@ def V2ray_Proxies(length: int) -> None:
         length = 20 if length > 20 else length
 
         # Base url to request
-        base_url = f"https://raw.githubusercontent.com/yebekhe/ConfigCollector/main/json/configs.json?v1.{int(time.time())}"
+        base_url = f"https://raw.githubusercontent.com/yebekhe/TVC/main/subscriptions/singbox/mix.json.{int(time.time())}"
 
         # Make request to fetch proxies
         response = requests.get(base_url).json()
