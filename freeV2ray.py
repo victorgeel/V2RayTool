@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Get free random proxies from 'yebekhe's scanner'
 
 # Imports
 import random, requests, time, sys
@@ -20,10 +19,10 @@ def V2ray_Proxies(length: int) -> None:
         length = 20 if length > 20 else length
 
         # Base url to request
-        base_url = f"https://raw.githubusercontent.com/yebekhe/ConfigCollector/main/json/configs.json?v1.{int(time.time())}"
+        base_url = f"https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/All_Configs_Sub.txt"
 
         # Make request to fetch proxies
-        response = requests.get(base_url).json()
+        response = requests.get(base_url).text.splitlines()
 
         # Get random proxies from main result
         random_proxies = random.choices(response, k=length)
@@ -32,7 +31,7 @@ def V2ray_Proxies(length: int) -> None:
         if random_proxies:
             with open("data/free_v2ray.txt", "a") as data:
                 for proxy in random_proxies:
-                    data.write(proxy['config'] + "\n")
+                    data.write(proxy + "\n")
             printer(f"\33[2;32m{length} Proxies saved to data/free_v2ray.txt!\33[m")
 
     # Handle exception and raise SystemError
@@ -56,3 +55,4 @@ Help: python freeV2ray.py [arguments]
             print("Invalid argument! run with -h")
     else:
         print("No argument! run with -h")
+        
