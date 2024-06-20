@@ -50,6 +50,6 @@ Help: python getConfig.py [argumentss]
 + **freeV2ray.py**
 ```bash
 Help: python freeV2ray.py [arguments]
-    get free proxies -> python freeV2ray.py 20 (maximum length is 20)
+    get free proxies -> python freeV2ray.py 150 (maximum length is 150)
     help message     -> python freeV2ray.py -h/--help 
 ```
