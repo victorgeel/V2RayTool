@@ -10,6 +10,7 @@ servers by using notebook.
 + clone
 ```bash
 git clone https://github.com/victorgeel/V2RayTool.git
+cd V2RayTool
 ```
 + requirements
 ```bash
