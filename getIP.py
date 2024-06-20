@@ -1,7 +1,4 @@
-#!/sut/bin/env python3
-
-
-# Get daily IPs from http://bot.sudoer.net/best.cf.iran fro Iran
+#!/usr/bin/env python3
 
 
 # Imports
@@ -9,13 +6,13 @@ import requests
 import time
 import sys
 
-
-# Gets IPs from target website
+# Gets IPs from GitHub repository
 def get_ip():
-    respones = requests.get("http://bot.sudoer.net/best.cf.iran")
-    if respones.status_code == 200:
-        return respones.text
-
+    response = requests.get("https://raw.githubusercontent.com/V2RayTool/data/main/free_v2ray.txt")
+    if response.status_code == 200:
+        return response.text
+    else:
+        return "Failed to retrieve IPs"
 
 # Save the IPs into txt file
 def save_ip():
@@ -27,7 +24,6 @@ def save_ip():
         print(char, end="", flush=True)
         time.sleep(0.01)
 
-
 # Run the program
 if __name__ == "__main__":
     if len(sys.argv) != 1:
@@ -38,7 +34,7 @@ Help: python getIP.py [arguments: optional]
 
     for only get IPs -> python getIP.py
     for save the IPs -> python getIP.py -s
-    for help message -> python getIp.py [-h, --help] 
+    for help message -> python getIP.py [-h, --help] 
 """
             )
         elif sys.argv[1] == "-s":
@@ -50,5 +46,4 @@ Help: python getIP.py [arguments: optional]
             print(char, end="", flush=True)
             time.sleep(0.01)
 
-
-# EOF 
+# EOF
