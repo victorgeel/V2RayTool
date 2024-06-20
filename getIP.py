@@ -1,26 +1,25 @@
 #!/usr/bin/env python3
 
-
 # Imports
 import requests
 import time
 import sys
 
-# Gets IPs from GitHub repository
+# Gets IPs from the GitHub URL
 def get_ip():
-    response = requests.get("https://raw.githubusercontent.com/V2RayTool/data/main/free_v2ray.txt")
+    response = requests.get("https://raw.githubusercontent.com/victorgeel/V2RayTool/main/ip/all_result.txt")
     if response.status_code == 200:
         return response.text
     else:
-        return "Failed to retrieve IPs"
+        raise Exception("Failed to fetch data from the URL")
 
-# Save the IPs into txt file
+# Save the IPs into a txt file
 def save_ip():
     temp = get_ip()
-    with open("ip/result.txt", "w") as file:
+    with open("data/result.txt", "w") as file:
         file.write(temp)
 
-    for char in "\033[2;34mResults saved in ip/result.txt\033[m\n":
+    for char in "\033[2;34mResults saved in data/result.txt\033[m\n":
         print(char, end="", flush=True)
         time.sleep(0.01)
 
@@ -35,7 +34,7 @@ Help: python getIP.py [arguments: optional]
     for only get IPs -> python getIP.py
     for save the IPs -> python getIP.py -s
     for help message -> python getIP.py [-h, --help] 
-"""
+                """
             )
         elif sys.argv[1] == "-s":
             save_ip()
