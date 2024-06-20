@@ -16,7 +16,7 @@ def printer(message: str) -> None:
 # Get random free v2ray configs
 def V2ray_Proxies(length: int) -> None:
     try:
-        length = 20 if length > 20 else length
+        length = 50 if length > 50 else length
 
         # Base url to request
         base_url = f"https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/All_Configs_Sub.txt"
@@ -55,4 +55,4 @@ Help: python freeV2ray.py [arguments]
             print("Invalid argument! run with -h")
     else:
         print("No argument! run with -h")
-        
+            
