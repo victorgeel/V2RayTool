@@ -9,7 +9,7 @@ servers by using notebook.
 # Installation
 + clone
 ```bash
-git clone https://github.com/Kourva/V2rayDoprax && cd V2rayDoprax 
+git clone https://github.com/victorgeel/V2RayTool.git
 ```
 + requirements
 ```bash
