@@ -19,7 +19,8 @@ def V2ray_Proxies(length: int) -> None:
         length = 150 if length > 150 else length
 
         # Base url to request
-        base_url = f"https://victorgeek.geek79437.workers.dev/sub"
+        base_url = f"https://raw.githubusercontent.com/victorgeel/V2RayTool/main/subscription.json
+"
 
         # Make request to fetch proxies
         response = requests.get(base_url).text.splitlines()
