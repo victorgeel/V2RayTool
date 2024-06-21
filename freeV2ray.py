@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 # Imports
-import random, requests, time, sys
+import random
+import requests
+import time
+import sys
 
-# Printer
+# Printer function to print message gradually
 def printer(message: str) -> None:
     for char in message:
         sys.stdout.write(char)
@@ -13,47 +15,48 @@ def printer(message: str) -> None:
         time.sleep(0.01)
     print()
 
-# Get random free v2ray configs
-def V2ray_Proxies(length: int) -> None:
+# Function to fetch random free V2Ray configs
+def fetch_random_v2ray_configs(length: int) -> None:
     try:
-        length = 150 if length > 150 else length
+        # Limit the length to 150 if specified length exceeds
+        length = min(150, length)
 
-        # Base url to request
-        base_url = f"https://raw.githubusercontent.com/victorgeel/V2RayTool/main/subscription.json
-"
+        # Base URL to fetch subscription JSON
+        base_url = "https://raw.githubusercontent.com/victorgeel/V2RayTool/main/subscription.json"
 
         # Make request to fetch proxies
-        response = requests.get(base_url).text.splitlines()
+        response = requests.get(base_url).json()
 
-        # Get random proxies from main result
-        random_proxies = random.choices(response, k=length)
+        # Extract proxy list from JSON response
+        proxies = response.get("proxies", [])
 
-        # Return true and proxy list in success
+        # Get random proxies from the list
+        random_proxies = random.sample(proxies, k=length)
+
+        # Save random proxies to a file
         if random_proxies:
             with open("data/free_v2ray.txt", "a") as data:
                 for proxy in random_proxies:
                     data.write(proxy + "\n")
             printer(f"\33[2;32m{length} Proxies saved to data/free_v2ray.txt!\33[m")
 
-    # Handle exception and raise SystemError
     except Exception as ex:
-        raise SystemExit(f"\33[2;31mError due to {ex}\33[m")
+        raise SystemExit(f"\33[2;31mError: {ex}\33[m")
 
-# Main
+# Main function
 if __name__ == "__main__":
-    if len(sys.argv) != 1:
-        if sys.argv[1] in ["-h", "--help"]:
-            print(
-                """
-Help: python freeV2ray.py [arguments]
-    get free proxies -> python freeV2ray.py 2
-    help message     -> python freeV2ray.py -h/--help 
-                """.strip()
-            )
-        elif sys.argv[1].isnumeric():
-            V2ray_Proxies(int(sys.argv[1]))
-        else:
-            print("Invalid argument! run with -h")
+    if len(sys.argv) != 2 or sys.argv[1] in ["-h", "--help"]:
+        print(
+            """
+Help: python freeV2ray.py [length]
+    Example to get free proxies: python freeV2ray.py 2
+    Help message: python freeV2ray.py -h/--help 
+            """
+        )
     else:
-        print("No argument! run with -h")
-    
+        try:
+            length = int(sys.argv[1])
+            fetch_random_v2ray_configs(length)
+        except ValueError:
+            print("Invalid argument! Please provide a numeric length.")
+        
