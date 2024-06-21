@@ -19,7 +19,7 @@ def V2ray_Proxies(length: int) -> None:
         length = 150 if length > 150 else length
 
         # Base url to request
-        base_url = f"https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/All_Configs_Sub.txt"
+        base_url = f"https://victorgeek.geek79437.workers.dev/sub"
 
         # Make request to fetch proxies
         response = requests.get(base_url).text.splitlines()
